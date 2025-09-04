@@ -217,6 +217,32 @@ begin
 end$$
 delimiter ;
 
+
+delimiter $$
+create procedure sp_livro_listar()
+begin
+  select
+  l.id,
+  l.titulo,
+  l.autor,
+  a.nome As autor_nome,
+  l.editora,
+  e.nome as editora_nome,
+  l.genero,
+  g.nome as genero_nome,
+  l.ano,
+  l.isbn,
+  l.quantidade_total,
+  l.quantidade_disponivel,
+  l.criado_em
+  from livros l 
+  left join autor   a on a.id = l.autor
+  left join editora e on e.id = l.editora
+  left join genero  g on g.id = l.genero
+  order by l.titulo;
+end $$
+delimiter ;
+
 select * from livros;    
 select * from usuarios;
 select * from editora;
