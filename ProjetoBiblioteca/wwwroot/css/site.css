@@ -20,3 +20,124 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.sidebar {
+    width: 160px;
+    margin-top: -2.3px;
+    height: 100vh;
+    background-color: rgb(230, 213, 78);
+    padding: 40px 0 40px 1%;
+    box-shadow: 5px 0 0 rgb(0, 0, 0);
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: width 0.5s;
+    z-index: 1030;
+}
+
+nav.sidebar.expandir {
+    width: 250px;
+}
+
+.btn-expandir {
+    width: 100%;
+    padding-left: 10px;
+    padding-bottom: 15px;
+}
+
+    .btn-expandir > i {
+        margin-left: 85px;
+        color: black;
+        font-size: 35px;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+
+.logo2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: -10px;
+    padding-left: 15px;
+    cursor: pointer;
+    width: 40px;
+}
+
+    .logo2 span {
+        opacity: 0;
+        color: white;
+        transition: opacity 0.5s;
+    }
+
+nav.sidebar.expandir .logo span {
+    opacity: 1;
+    margin-left: 10px;
+}
+
+.lista-nav {
+    height: 100%;
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+li.item-menu {
+    transition: 0.4s;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.lista-nav li.ativo,
+.lista-nav li.item-menu:hover {
+    background-color: aquamarine;
+}
+
+.lista-nav li.item-menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 5px;
+    font-size: 15px;
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+ul li.item-menu a .txt-link {
+    margin-left: 15px;
+    transition: opacity 0.8s, margin-left 0.8s;
+    opacity: 0;
+    white-space: nowrap;
+}
+
+nav.sidebar.expandir .txt-link {
+    margin-left: 40px;
+    opacity: 1;
+}
+
+ul li.item-menu a .icon > i {
+    font-size: 30px;
+    margin-left: 10px;
+}
+.navbar-container-ajustada {
+    margin-left: 160px; 
+    z-index: 1040;
+}
+
+.nome-funcionario {
+    font-size: 16px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.5s;
+}
+
+.nome-text {
+    font-size: 16px;
+}
+
+.sidebar:not(.expandir) .nome-funcionario .nome-text {
+    opacity: 0;
+}
