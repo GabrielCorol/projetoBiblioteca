@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ProjetoBiblioteca.Models.Livros>
+
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Livros";
+}
+<h2>Livros</h2>
+
+@if (TempData["ok"] != null){<div class="ok">@TempData["ok"]</div>}
+
+<p><a asp-action="Criar">Novo Livro</a></p>
+
+<table>
+	<thead>
+		<tr>
+		<th>#</th><th>Titulo</th><th>Autor</th><th>Editora</th><th>Genero</th>
+		<th>Ano</th><th>ISBN</th><th>Total</th><th>Disp.</th><th>Ações</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var l in Model)
+		{	
+			<tr>
+				<td>@l.Id</td>
+				<td>@l.Titulo</td>
+				<td>@l.Autor </td>
+				<td>@l.Editor</td>
+				<td>@l.Livro</td>
+				<td>@l.Ano/td>
+				<td>@l.Isbn</td>
+				<td>@l.QuantidadeTotal</td>
+				<td>@l.QuantidadeDisponivel</td>
+				<td>
+				<a asp-action="Editar" asp-route-id="@l.Id">Editar</a>
+				<form asp-action="Excluir" method="post" style="display:inline" onsubmit="return confirm('Excluir livro?');">
+				@Html.AntiForgeryToken()
+				<input type="hidden" name="id" value="@l.Id" />
+				<button type="submit">Excluir</button>
+				</form>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

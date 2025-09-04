@@ -195,6 +195,28 @@ delimiter ;
 
 call sp_livro_criar ('Test O começo','Pedro','Panini','Ação',2025,'978-985-00512-3-7',120,80);
 
+-- Criando select para listar as tabelas AUTOR EDITORA E GENERO
+delimiter $$
+create procedure sp_autor_listar()
+begin 
+ select id,nome from autor order by nome;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure sp_editora_listar()
+begin 
+ select id,nome from editora order by nome;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure sp_genero_listar()
+begin 
+ select id,nome from genero order by nome;
+end$$
+delimiter ;
+
 select * from livros;    
 select * from usuarios;
 select * from editora;
