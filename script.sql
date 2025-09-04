@@ -7,7 +7,7 @@ id int primary key auto_increment,
 nome varchar(100),
 email varchar(100),
 senha_hash varchar(255),
-role enum ("Bibiotecario","Admin"),
+role enum ("Bibliotecario","Admin"),
 ativo tinyint(1) Default 1,
 criado_em datetime default current_timestamp
 );
@@ -37,6 +37,9 @@ CALL sp_usuario_criar(
     '$1234',
     'Admin'
 );
+
+Create table editora(
+
 
 	
 select * from usuarios;
