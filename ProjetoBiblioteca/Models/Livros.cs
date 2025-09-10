@@ -15,7 +15,7 @@ namespace ProjetoBiblioteca.Models
 
         public short? Ano { get; set;}
 
-        public string Isbn { get; set;}
+        public string? Isbn { get; set;}
 
         public int QuantidadeTotal { get; set;}
 
@@ -23,14 +23,14 @@ namespace ProjetoBiblioteca.Models
 
         public DateTime CriadoEm { get; set;}
 
-        public string? Autor { get; set; }
-        public string? Editor { get; set; }
-        public string? Livro { get; set; }
+        public string Autor { get; set; }
+        public string Editor { get; set; }
+        public string Genero { get; set; }
 
-        public List<SelectListItem> Autores { get; set; } = new();
-        public List<SelectListItem> Editoras { get; set; } = new();
+        public List<SelectListItem> AutorNome { get; set; } = new();
+        public List<SelectListItem> EditorNome { get; set; } = new();
 
-        public List<SelectListItem> Generos { get; set; } = new();
+        public List<SelectListItem> GeneroNome { get; set; } = new();
 
 
     }

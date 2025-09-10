@@ -2,6 +2,7 @@
 using ProjetoBiblioteca.Models;
 using MySql.Data.MySqlClient;
 using ProjetoBiblioteca.Data;
+using BCrypt.Net;
 
 namespace ProjetoBiblioteca.Controllers
 {
@@ -23,9 +24,12 @@ namespace ProjetoBiblioteca.Controllers
             using var conn = db.GetConnection();
             using var cmd = new MySqlCommand("sp_usuario_criar",conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            var senhaHash = BCrypt.Net.BCrypt.HashPassword(vm.senha_hash, workFactor: 12);
+
             cmd.Parameters.AddWithValue("p_nome",vm.nome);
             cmd.Parameters.AddWithValue("p_email", vm.email);
-            cmd.Parameters.AddWithValue("p_senha_hash", vm.senha_hash);
+            cmd.Parameters.AddWithValue("p_senha_hash", senhaHash);
             cmd.Parameters.AddWithValue("p_role", vm.role);
             cmd.ExecuteNonQuery();
             return RedirectToAction("CriarUsuario");

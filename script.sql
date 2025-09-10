@@ -150,9 +150,8 @@ CREATE PROCEDURE sp_livro_criar (
     IN p_genero VARCHAR(100),
     IN p_ano int,
     IN p_isbn VARCHAR(32),
-	IN p_quantidade_total int,
-    IN p_quantidade_disponivel int
-)
+	IN p_quantidade_total int
+    )
 BEGIN
 	DECLARE dAutor INT;
 	DECLARE dEditora INT;
@@ -186,7 +185,7 @@ BEGIN
     SET dGenero := (SELECT id FROM genero WHERE nome = p_genero);
     
     insert into livros (titulo,autor,editora,genero,ano,isbn,quantidade_total,quantidade_disponivel,criado_em)
-    values(p_titulo,dAutor,dEditora, dGenero, p_ano,p_isbn,p_quantidade_total,p_quantidade_disponivel,now());
+    values(p_titulo,dAutor,dEditora, dGenero, p_ano,p_isbn,p_quantidade_total,p_quantidade_total,now());
     
 
 END
@@ -242,6 +241,10 @@ begin
   order by l.titulo;
 end $$
 delimiter ;
+
+
+
+
 
 select * from livros;    
 select * from usuarios;

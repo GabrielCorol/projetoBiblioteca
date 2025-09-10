@@ -1,0 +1,4 @@
+na terminal instala:
+install-Package BCrypt.net-next
+
+

@@ -56,3 +56,4 @@ C:\Users\3mod\Desktop\ProjetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\stati
 C:\Users\3mod\Desktop\ProjetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\staticwebassets\msbuild.ProjetoBiblioteca.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\3mod\Desktop\ProjetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\3mod\Desktop\ProjetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoB.5467C208.Up2Date
+C:\Users\3mod\Desktop\ProjetoBiblioteca\ProjetoBiblioteca\bin\Debug\net8.0\BCrypt.Net-Next.dll
