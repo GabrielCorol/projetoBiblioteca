@@ -109,5 +109,30 @@ namespace ProjetoBiblioteca.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public IActionResult Editar(int id)
+        {
+
+            using var conn = db.GetConnection();
+
+            Livros? livros = null;
+            using (var cmd = new MySqlCommand("sp_livros_obter", conn) {  CommandType = System.Data.CommandType.StoredProcedure})
+            {
+                cmd.Parameters.AddWithValue("p_id", id);
+                using var rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                    livros = new Livros
+                    {
+                        Id = rd.GetInt32("id"),
+                        Titulo = rd.GetString("titulo"),
+
+
+                    }
+
+                }
+            }
+        }
+
     }
 }
