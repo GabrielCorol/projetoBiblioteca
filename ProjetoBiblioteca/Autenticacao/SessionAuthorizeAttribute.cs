@@ -13,16 +13,16 @@ namespace ProjetoBiblioteca.Autenticacao
                    
                 var http = context.HttpContext;
                 var role = http.Session.GetString(SessionKeys.UserRole);
-                var userid = http.Session.GetInt32(SessionKeys.UserId);
+                var userId = http.Session.GetInt32(SessionKeys.UserId);
 
-                if (userid == null)
+                if (userId == null)
                 {
                     context.Result = new RedirectToActionResult("Login", "Auth", null);
                     return;
                 }
                 if (!string.IsNullOrWhiteSpace(RoleAnyOf))
                 {
-                    var allowed = RoleAnyOf.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries );
+                    var allowed = RoleAnyOf.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
                     if (!allowed.Contains(role))
                     {
                         context.Result = new ForbidResult();

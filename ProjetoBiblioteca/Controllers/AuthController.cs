@@ -2,6 +2,7 @@
 using ProjetoBiblioteca.Autenticacao;
 using MySql.Data.MySqlClient;
 using ProjetoBiblioteca.Data;
+using System.Data;
 
 namespace ProjetoBiblioteca.Controllers
 {
@@ -22,8 +23,9 @@ namespace ProjetoBiblioteca.Controllers
                 ViewBag.Error = "Informe e-email e senha. ";
                 return View();
             }
+
             using var conn = db.GetConnection();
-            using var cmd = new MySqlCommand("sp_usuario_obter_por_email", conn) { CommandType = System.Data.CommandType.StoredProcedure };
+            using var cmd = new MySqlCommand("sp_usuario_obter_por_email", conn) { CommandType = CommandType.StoredProcedure };
             cmd.Parameters.AddWithValue("p_email", email);
             using var rd = cmd.ExecuteReader();
             if (!rd.Read())
@@ -32,7 +34,7 @@ namespace ProjetoBiblioteca.Controllers
                 return View();
             }
 
-            var id = rd.GetInt32("Id");
+            var id = rd.GetInt32("id");
             var nome = rd.GetString("nome");
             var role = rd.GetString("role");
             var ativo = rd.GetBoolean("ativo");
@@ -56,6 +58,7 @@ namespace ProjetoBiblioteca.Controllers
                 ViewBag.Error = "Senha inválida.";
                 return View();
             }
+            
             HttpContext.Session.SetInt32(SessionKeys.UserId, id);
             HttpContext.Session.SetString(SessionKeys.UserName, nome);
             HttpContext.Session.SetString(SessionKeys.UserEmail, email);

@@ -3,6 +3,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+// Sessão
 builder.Services.AddSession(o =>
 {
     o.Cookie.Name = ".Biblioteca.Session";
@@ -25,6 +27,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+//A Sessão deve vir antes do mvc
+app.UseSession();
 
 app.UseAuthorization();
 

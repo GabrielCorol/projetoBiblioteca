@@ -1,38 +1,83 @@
 ﻿@model ProjetoBiblioteca.Models.Usuarios
 
-<h2>Cadastrar Usuário</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Cadastrar Usuário</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-image: url('/images/shidou-background.png');
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-size: 300px; /* ajustável */
+            background-attachment: fixed;
+            background-color: #f0f8ff; /* cor de base clara */
+        }
 
+        .form-container {
+            max-width: 600px;
+            margin: 60px auto; /* espaço lá de cima para ver o fundo */
+            background-color: rgba(240, 248, 255, 0.9); /* deixar meio transparente pra mostrar fundo */
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
-<form asp-action="CriarUsuario" method="post">
-    @Html.AntiForgeryToken()
+            .form-container input,
+            .form-container select {
+                border-radius: 10px;
+            }
 
-    <div>
-        <label>Nome</label>
-        <input asp-for="nome" required />
+            .form-container button {
+                border-radius: 10px;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2 class="text-center mb-4 text-primary">Cadastrar Usuário</h2>
+
+        <form asp-action="CriarUsuario" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <label asp-for="nome" class="form-label fw-bold">Nome</label>
+                <input asp-for="nome" class="form-control" placeholder="Digite o nome completo" required />
+                <span asp-validation-for="nome" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="email" class="form-label fw-bold">Email</label>
+                <input asp-for="email" type="email" class="form-control" placeholder="usuario@dominio.com" required />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="senha_hash" class="form-label fw-bold">Senha (hash/temporária)</label>
+                <input asp-for="senha_hash" type="text" class="form-control" placeholder="Senha temporária" required />
+                <span asp-validation-for="senha_hash" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Papel</label>
+                <select name="Role" class="form-select" required>
+                    <option value="">Selecione...</option>
+                    <option value="Bibliotecario">Bibliotecário</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg fw-bold">Salvar</button>
+            </div>
+
+        </form>
     </div>
 
-    <div>
-        <label>Email</label>
-        <input asp-for="email" type="email" required />
-    </div>
-
-    <div>
-        <label>Senha (hash/temporária)</label>
-        <input asp-for="senha_hash" type="text" required />
-    </div>
-
-    <div>
-        <label>Papel</label>
-        <select name="Role" required>
-            <option value="">Selecione...</option>
-            <option value="Bibliotecario">Bibliotecário</option>
-            <option value="Admin">Admin</option>
-        </select>
-
-    </div>
-
-    <button type="submit">Salvar</button>
-</form>
-
-
- 
+</body>
+</html>

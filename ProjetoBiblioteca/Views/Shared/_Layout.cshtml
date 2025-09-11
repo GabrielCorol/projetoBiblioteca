@@ -69,7 +69,7 @@
                 <a asp-controller="Genero" asp-action="Index">Gêneros</a>
 
                 @* Somente Admin vê Usuários *@
-                @if (role == "Adm")
+                @if (role == "Admin")
                 {
                     <a asp-controller="Usuarios" asp-action="CriarUsuario">Usuários</a>
                 }

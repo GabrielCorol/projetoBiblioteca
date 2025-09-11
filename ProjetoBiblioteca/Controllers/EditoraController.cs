@@ -10,7 +10,19 @@ namespace ProjetoBiblioteca.Controllers
         public readonly Database db = new Database();
         public IActionResult Index()
         {
-            return View();
+            var lista = new List<Editora>();
+            using var conn = db.GetConnection();
+            using var cmd = new MySqlCommand("sp_editora_listar", conn) { CommandType = System.Data.CommandType.StoredProcedure };
+            using var rd = cmd.ExecuteReader();
+            while (rd.Read())
+            {
+                lista.Add(new Editora
+                {
+                    Id = rd.GetInt32("id"),
+                    Nome = rd.GetString("nome")
+                });
+            }
+            return View(lista);
         }
         public IActionResult CriarEditora()
         {

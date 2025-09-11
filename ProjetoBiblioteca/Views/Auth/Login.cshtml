@@ -7,14 +7,14 @@
 <section class="login-wrap">
 	<h2>Acesso ao sistema</h2>
 
-	@if (ViewBag.Erro != null)
+	@if (ViewBag.Error != null)
 	{
-		<div class="alert-error">@ViewBag.Erro</div>
+		<div class="alert-error">@ViewBag.Error</div>
 
 	}
 
 
-	<form asp-action="Logicon" method="post">
+	<form asp-action="Login" method="post">
 
 		@Html.AntiForgeryToken()
 		<input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl"/>

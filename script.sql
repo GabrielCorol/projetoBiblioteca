@@ -34,7 +34,7 @@ DELIMITER ;
 CALL sp_usuario_criar(
     'Henrique Admin',
     'Henrique@biblioteca.com',
-    '$1234',
+    '1234',
     'Admin'
 );
 

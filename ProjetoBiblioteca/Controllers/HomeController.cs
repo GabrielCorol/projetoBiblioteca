@@ -16,12 +16,11 @@ namespace ProjetoBiblioteca.Controllers
 
         public IActionResult Index()
         {
-            if (!HttpContext.Session.GetInt32(SessionKeys.UserId).HasValue)
+            if(!HttpContext.Session.GetInt32(SessionKeys.UserId).HasValue)
                 return RedirectToAction("Login", "Auth");
 
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
