@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ProjetoBiblioteca.Autenticacao;
 using ProjetoBiblioteca.Models;
 using System.Diagnostics;
 
@@ -15,6 +16,9 @@ namespace ProjetoBiblioteca.Controllers
 
         public IActionResult Index()
         {
+            if (!HttpContext.Session.GetInt32(SessionKeys.UserId).HasValue)
+                return RedirectToAction("Login", "Auth");
+
             return View();
         }
 

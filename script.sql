@@ -242,7 +242,13 @@ begin
 end $$
 delimiter ;
 
-
+delimiter $$
+Create procedure sp_usuario_obter_por_email(IN p_email varchar(100))
+begin
+select id,nome,email, senha_hash,role,ativo from usuarios where email= p_email
+limit 1;
+end $$
+delimiter ;
 
 
 
