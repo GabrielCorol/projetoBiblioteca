@@ -127,7 +127,7 @@ namespace ProjetoBiblioteca.Controllers
                     {
                         Id = rd.GetInt32("id"),
                         Titulo = rd.GetString("titulo"),
-                        AutorId = rd["autor"] == DBNull.Value ? null : (int?)rd.GetInt32(autor),
+                        AutorId = rd["autor"] == DBNull.Value ? null : (int?)rd.GetInt32("autor"),
                         EditoraId = rd["editora"] == DBNull.Value ? null : (int?)rd.GetInt32("editora"),
                         Ano = rd["ano"] == DBNull.Value ? null : (short?)rd.GetInt16("ano"),
                         Isbn = rd["isbn"] as string,
