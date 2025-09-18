@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using ProjetoBiblioteca.Autenticacao;
 using ProjetoBiblioteca.Data;
 using ProjetoBiblioteca.Models;
 
 namespace ProjetoBiblioteca.Controllers
 {
+    [SessionAuthorize]
     public class EditoraController : Controller
     {
         public readonly Database db = new Database();

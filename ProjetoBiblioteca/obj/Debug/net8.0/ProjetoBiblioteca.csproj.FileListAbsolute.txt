@@ -57,3 +57,16 @@ C:\Users\3mod\Desktop\ProjetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\stati
 C:\Users\3mod\Desktop\ProjetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\3mod\Desktop\ProjetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoB.5467C208.Up2Date
 C:\Users\3mod\Desktop\ProjetoBiblioteca\ProjetoBiblioteca\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.csproj.AssemblyReference.cache
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.AssemblyInfoInputs.cache
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.AssemblyInfo.cs
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.RazorAssemblyInfo.cache
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.RazorAssemblyInfo.cs
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.sourcelink.json
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.dll
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\refint\ProjetoBiblioteca.dll
+C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.pdb

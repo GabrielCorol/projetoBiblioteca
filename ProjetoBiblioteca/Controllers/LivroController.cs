@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MySql.Data.MySqlClient;
 using ProjetoBiblioteca.Data;
 using ProjetoBiblioteca.Models;
+using System.Data;
 
 namespace ProjetoBiblioteca.Controllers
 {
@@ -126,13 +127,46 @@ namespace ProjetoBiblioteca.Controllers
                     {
                         Id = rd.GetInt32("id"),
                         Titulo = rd.GetString("titulo"),
-
-
-                    }
-
+                        AutorId = rd["autor"] == DBNull.Value ? null : (int?)rd.GetInt32(autor),
+                        EditoraId = rd["editora"] == DBNull.Value ? null : (int?)rd.GetInt32("editora"),
+                        Ano = rd["ano"] == DBNull.Value ? null : (short?)rd.GetInt16("ano"),
+                        Isbn = rd["isbn"] as string,
+                        QuantidadeTotal = rd.GetInt32("quantidade_total")
+                    };
                 }
             }
+            if (livros == null) return NotFound();
+
+            ViewBag.Autores = CarregarAutores(conn);
+            ViewBag.Editoras = CarregarEditoras(conn);
+            ViewBag.Generos = CarregarGeneros(conn);
+
+            return View(livros);
         }
 
+        [HttpPost, ValidateAntiForgeryToken]
+
+        public IActionResult Editar(Livros model)
+        {
+            if (model.Id <= 0) return NotFound();
+            if (string.IsNullOrWhiteSpace(model.Titulo) || model.QuantidadeTotal < 1)
+            {
+                ModelState.AddModelError("", "Informe titulo e quantidade total (>=1).");
+            }
+            using var conn2 = db.GetConnection();
+            using var cmd = new MySqlCommand("sp_livro_atualizar", conn2) { CommandType = CommandType.StoredProcedure };
+            cmd.Parameters.AddWithValue("p_id", model.Id);
+            cmd.Parameters.AddWithValue("p_titulo", model.Titulo);
+            cmd.Parameters.AddWithValue("p_autor", model.AutorId ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("p_editora", model.EditoraId ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("p_genero", model.GeneroId ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("p_ano", model.Ano ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("p_isbn", (object?)model.Isbn ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("p_novo_total", model.QuantidadeTotal);
+            cmd.ExecuteNonQuery();
+
+            TempData["ok"] = "Livro atualizado!";
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
