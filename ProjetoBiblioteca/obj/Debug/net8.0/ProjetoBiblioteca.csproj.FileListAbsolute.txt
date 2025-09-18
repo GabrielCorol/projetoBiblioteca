@@ -70,6 +70,7 @@ C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\D
 C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.dll
 C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\refint\ProjetoBiblioteca.dll
 C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.pdb
+<<<<<<< Updated upstream
 C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\bin\Debug\net8.0\appsettings.json
 C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\bin\Debug\net8.0\ProjetoBiblioteca.staticwebassets.runtime.json
@@ -115,3 +116,5 @@ C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\D
 C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoB.5467C208.Up2Date
 C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ProjetoBiblioteca.genruntimeconfig.cache
 C:\Users\Gabriel\Desktop\aula_Rovilson\projetoBiblioteca\ProjetoBiblioteca\obj\Debug\net8.0\ref\ProjetoBiblioteca.dll
+=======
+>>>>>>> Stashed changes
