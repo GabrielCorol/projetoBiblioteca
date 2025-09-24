@@ -15,7 +15,7 @@ namespace ProjetoBiblioteca.Controllers
         {
             var list = new List<SelectListItem>();
             using var cmd = new MySqlCommand("sp_autor_listar", conn);
-             cmd.CommandType = System.Data.CommandType.StoredProcedure ;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
             using var rd = cmd.ExecuteReader();
             while (rd.Read())
                 list.Add(new SelectListItem { Value = rd.GetInt32("id").ToString(), Text = rd.GetString("nome") });
@@ -25,7 +25,7 @@ namespace ProjetoBiblioteca.Controllers
         {
             var list = new List<SelectListItem>();
             using var cmd = new MySqlCommand("sp_editora_listar", conn);
-             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
             using var rd = cmd.ExecuteReader();
             while (rd.Read())
                 list.Add(new SelectListItem { Value = rd.GetInt32("id").ToString(), Text = rd.GetString("nome") });
@@ -34,8 +34,8 @@ namespace ProjetoBiblioteca.Controllers
         private List<SelectListItem> CarregarGeneros(MySqlConnection conn)
         {
             var list = new List<SelectListItem>();
-            using var cmd = new MySqlCommand("sp_genero_listar", conn); 
-            cmd.CommandType = System.Data.CommandType.StoredProcedure ;
+            using var cmd = new MySqlCommand("sp_genero_listar", conn);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
             using var rd = cmd.ExecuteReader();
             while (rd.Read())
                 list.Add(new SelectListItem { Value = rd.GetInt32("id").ToString(), Text = rd.GetString("nome") });
@@ -76,23 +76,31 @@ namespace ProjetoBiblioteca.Controllers
         [HttpGet]
         public IActionResult Criar()
         {
-                using var conn = db.GetConnection();
-                ViewBag.Autores = CarregarAutores(conn);
-                ViewBag.Editoras = CarregarEditoras(conn);
-                ViewBag.Generos = CarregarGeneros(conn);
+            using var conn = db.GetConnection();
+            ViewBag.Autores = CarregarAutores(conn);
+            ViewBag.Editoras = CarregarEditoras(conn);
+            ViewBag.Generos = CarregarGeneros(conn);
 
 
             return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult Criar(Livros vm)
-        {
-            if (string.IsNullOrWhiteSpace(vm.Titulo) || vm.QuantidadeTotal < 1 )
+        public IActionResult Criar(Livros vm, IFormFile? capa)
+        { 
+            string? relPath = null;
+            if (capa != null && capa.Length > 0)
             {
-                ModelState.AddModelError("", "Informe título e uma quantidade total válida (>=1).");
+                var ext = Path.GetExtension(capa.FileName);
+                var fileName = $"{Guid.NewGuid()}{ext}";
+                var saveDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "capas");
+                Directory.CreateDirectory(saveDir);
+                var absPath = Path.Combine(saveDir, fileName);
+                using var fs = new FileStream(absPath, FileMode.Create);
+                capa.CopyTo(fs);
+                relPath = Path.Combine("capas", fileName).Replace("\\", "/"); 
             }
-            
+
             using var conn2 = db.GetConnection();
             using var cmd = new MySqlCommand("sp_livro_criar", conn2) { CommandType = System.Data.CommandType.StoredProcedure };
             cmd.Parameters.AddWithValue("p_titulo", vm.Titulo);
@@ -102,7 +110,7 @@ namespace ProjetoBiblioteca.Controllers
             cmd.Parameters.AddWithValue("p_ano", (object?)vm.Ano ?? DBNull.Value);
             cmd.Parameters.AddWithValue("p_isbn", (object?)vm.Isbn ?? DBNull.Value);
             cmd.Parameters.AddWithValue("p_quantidade_total", vm.QuantidadeTotal);
-      
+
             cmd.ExecuteNonQuery();
 
             TempData["ok"] = "Livro cadastrado!";
@@ -117,7 +125,7 @@ namespace ProjetoBiblioteca.Controllers
             using var conn = db.GetConnection();
 
             Livros? livros = null;
-            using (var cmd = new MySqlCommand("sp_livros_obter", conn) {  CommandType = System.Data.CommandType.StoredProcedure})
+            using (var cmd = new MySqlCommand("sp_livros_obter", conn) { CommandType = System.Data.CommandType.StoredProcedure })
             {
                 cmd.Parameters.AddWithValue("p_id", id);
                 using var rd = cmd.ExecuteReader();
@@ -180,10 +188,11 @@ namespace ProjetoBiblioteca.Controllers
                 cmd.ExecuteNonQuery();
                 TempData["ok"] = "Livro excluido!";
             }
-            catch (MySqlException ex) 
+            catch (MySqlException ex)
             {
                 TempData["ok"] = ex.Message;
             }
             return RedirectToAction(nameof(Index));
         }
     }
+}

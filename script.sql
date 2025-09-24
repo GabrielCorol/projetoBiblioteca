@@ -280,6 +280,48 @@ begin
 delete from livros where id = p_id;
 end $$
 
+alter table livros
+add column capa_arquivo varchar(255) null after isnb;
+
+create table emprestimos(
+id int primary key auto_increment,
+id_leitor int not null,
+id_bibliotecario int not null,
+data_emprestico datetime not null default current_timestamp,
+data_prevista_devolucao date not null,
+data_devolucao_geral datetime null,
+status enum('Ativo','Finalizado','Parcial') not null default 'Ativo'
+
+);
+
+create table emprestimo_itens (
+id int primary key auto_increment,
+id_emprestimo int not null,
+id_livro int not null,
+quantidade int not null default 1,
+data_devolucao_item datetime null
+);
+
+alter table livros
+add constraint fk_livros_autor foreign key (autor) references autor(id);
+add constraint fk_livros_editora foreign key (editora) references editora(id);
+add constraint fk_livros_genero foreign key (genero) references genero(id);
+
+alter table emprestimo_livros
+add constraint fk_itens_emp foreign key (id_emprestimo) references emprestimos(id);
+add constraint fk_itens_livro foreign key (id_livro) references livros(id);
+
+alter table emprestimos
+add constraint fk_leitor_emp foreign key (id_leitor) references leitor (id_leitor),
+add constraint fk_empr_bibli foreign key (id_bibliotecario) references Usuarios (id);
+
+create table leitor (
+id_leitor int primary key auto_increment,
+nomeLeitor varchar(30),
+foto_leitor varchar(255),
+criado_ datetime not null default current_timestamp
+
+);
 
 delimiter ;
 
